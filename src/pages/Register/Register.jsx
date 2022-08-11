@@ -1,40 +1,30 @@
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signIn } from 'redux/auth/auth-operations';
+import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 
 const RegisterForm = () => {
- const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
   const dispatch = useDispatch();
 
-  const handlerSubmbit = evt => {
-    evt.preventDefault();
-    const credentials = {
-      name,
-      email,
-      password,
-    };
-    console.log(credentials);
-    dispatch(signIn(credentials));
+  const handlerSubmit = event => {
+    event.preventDefault();
+    dispatch(signIn(values));
+    setValues('');
   };
 
-  const handleChange = evt => {
-    const { name, value } = evt.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'password':
-        setPassword(value);
-        break;
-
-      case 'email':
-        setEmail(value);
-        break;
-
-      default:
-        break;
-    }
+  const handlerChange = event => {
+    const { value, name } = event.target;
+    setValues(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
     <Box
@@ -44,14 +34,14 @@ const RegisterForm = () => {
       }}
       noValidate
       autoComplete="off"
-      onSubmit={handlerSubmbit}
+      onSubmit={handlerSubmit}
     >
       <TextField
         id="name"
         name="name"
         type="text"
-        value={name}
-        onChange={handleChange}
+        value={values.name}
+        onChange={handlerChange}
         label="Name"
         variant="outlined"
         autoComplete="name"
@@ -60,8 +50,8 @@ const RegisterForm = () => {
         id="email"
         name="email"
         type="email"
-        value={email}
-        onChange={handleChange}
+        value={values.email}
+        onChange={handlerChange}
         label="Email"
         variant="outlined"
         autoComplete="email"
@@ -70,15 +60,15 @@ const RegisterForm = () => {
         id="password"
         name="password"
         type="password"
-        value={password}
-        onChange={handleChange}
+        value={values.password}
+        onChange={handlerChange}
         label="Password"
         variant="filled"
       />
       <Button
         type="submit"
         variant="contained"
-        endIcon={<AddReactionOutlinedIcon />}
+        endIcon={<AccountBoxOutlinedIcon />}
       >
         Register
       </Button>

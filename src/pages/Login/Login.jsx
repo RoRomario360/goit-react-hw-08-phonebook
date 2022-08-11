@@ -15,7 +15,9 @@ const LoginForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     dispatch(logIn(values));
+    setValues('');
   };
 
   const handleChange = event => {
@@ -31,7 +33,7 @@ const LoginForm = () => {
       }}
       noValidate
       autoComplete="off"
-      onChange={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <TextField
         id="email"
