@@ -1,28 +1,40 @@
-import { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
-import AddReactionOutlinedIcon from '@mui/icons-material/AddReactionOutlined';
-import { signIn } from 'redux/auth/auth-operations';
-import { useDispatch } from 'react-redux';
+
 
 const RegisterForm = () => {
-  // const [isLoading, setIsLoading] = useState(false);
-  const [values, setValues] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+ const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    // setIsLoading(true);
-    dispatch(signIn(values));
+  const handlerSubmbit = evt => {
+    evt.preventDefault();
+    const credentials = {
+      name,
+      email,
+      password,
+    };
+    console.log(credentials);
+    dispatch(signIn(credentials));
   };
 
-  const handleChange = event => {
-    const { value, name } = event.target;
-    setValues(prev => ({ ...prev, [name]: value }));
-  };
+  const handleChange = evt => {
+    const { name, value } = evt.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'password':
+        setPassword(value);
+        break;
+
+      case 'email':
+        setEmail(value);
+        break;
+
+      default:
+        break;
+    }
 
   return (
     <Box
@@ -32,13 +44,13 @@ const RegisterForm = () => {
       }}
       noValidate
       autoComplete="off"
-      onSubmit={handleSubmit}
+      onSubmit={handlerSubmbit}
     >
       <TextField
         id="name"
         name="name"
         type="text"
-        value={values.name}
+        value={name}
         onChange={handleChange}
         label="Name"
         variant="outlined"
@@ -48,7 +60,7 @@ const RegisterForm = () => {
         id="email"
         name="email"
         type="email"
-        value={values.email}
+        value={email}
         onChange={handleChange}
         label="Email"
         variant="outlined"
@@ -58,12 +70,16 @@ const RegisterForm = () => {
         id="password"
         name="password"
         type="password"
-        value={values.password}
+        value={password}
         onChange={handleChange}
         label="Password"
         variant="filled"
       />
-      <Button variant="contained" endIcon={<AddReactionOutlinedIcon />}>
+      <Button
+        type="submit"
+        variant="contained"
+        endIcon={<AddReactionOutlinedIcon />}
+      >
         Register
       </Button>
     </Box>

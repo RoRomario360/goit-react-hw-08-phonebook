@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/auth-operations';
 import { Box, Button } from '@mui/material';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import TextField from '@mui/material/TextField';
@@ -9,8 +11,11 @@ const LoginForm = () => {
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
+    dispatch(logIn(values));
   };
 
   const handleChange = event => {
@@ -46,7 +51,11 @@ const LoginForm = () => {
         label="Password"
         variant="filled"
       />
-      <Button variant="contained" endIcon={<AccountBoxOutlinedIcon />}>
+      <Button
+        type="submit"
+        variant="contained"
+        endIcon={<AccountBoxOutlinedIcon />}
+      >
         Log in
       </Button>
     </Box>
