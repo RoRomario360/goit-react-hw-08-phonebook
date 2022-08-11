@@ -13,9 +13,11 @@ export const tokenAuth = {
 };
 
 export const signIn = createAsyncThunk('auth/register', async credentials => {
+  console.log('test');
   try {
     const { data } = await axios.post('/users/signup', credentials);
     tokenAuth.set(data.token);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -26,6 +28,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
     tokenAuth.set(data.token);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

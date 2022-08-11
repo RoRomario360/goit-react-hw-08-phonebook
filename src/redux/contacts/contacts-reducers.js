@@ -30,7 +30,7 @@ const loading = createReducer(false, {
   [deleteContact.rejected]: (state, { payload }) => false,
 });
 
-export default combineReducers({
+export const contactsReduser = combineReducers({
   items,
   filter,
   loading,
