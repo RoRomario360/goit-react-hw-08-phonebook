@@ -18,6 +18,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     dispatch(logIn(values));
+
     // setValues({});
   };
 

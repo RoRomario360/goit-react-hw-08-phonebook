@@ -20,7 +20,7 @@ export const App = () => {
         <Route path="login" element={<LoginForm />} />
         <Route path="contacts" element={<Contacts />} />
       </Routes>
-      <ToastContainer autoClose={2000} theme="colored" />
+      <ToastContainer autoClose={1000} theme="colored" />
     </>
   );
 };

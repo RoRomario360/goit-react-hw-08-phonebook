@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -20,7 +21,7 @@ export const addContact = createAsyncThunk(
   async (contact, { rejectedWithValue }) => {
     try {
       const { data } = await axios.post('/contacts', contact);
-
+      toast.success(' Contact added');
       return data;
     } catch (error) {
       return rejectedWithValue(error);
@@ -34,6 +35,7 @@ export const deleteContact = createAsyncThunk(
   async (id, { rejectedWithValue }) => {
     try {
       await axios.delete(`/contacts/${id}`);
+      toast.success('Deleted');
       return id;
     } catch (error) {
       return rejectedWithValue(error);

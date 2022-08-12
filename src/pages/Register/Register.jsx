@@ -1,4 +1,5 @@
 import s from './Register.module.css';
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from 'redux/auth/auth-operations';
@@ -19,7 +20,6 @@ const RegisterForm = () => {
   const handlerSubmit = event => {
     event.preventDefault();
     dispatch(signIn(values));
-    // setValues({});
   };
 
   const handlerChange = event => {
