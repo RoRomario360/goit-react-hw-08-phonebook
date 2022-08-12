@@ -3,8 +3,5 @@
   display: flex;
 }
 .input {
-  margin-right: 80px;
-}
-.input:last-child {
-  margin-right: 0;
+  margin-right: 100px;
 }

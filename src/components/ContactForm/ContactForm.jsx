@@ -47,7 +47,7 @@ export const Form = () => {
     <div className={s.form_wrapper}>
       <form onSubmit={handlerSubmit}>
         <TextField
-          className={s.input}
+          sx={{ marginRight: '80px' }}
           type="text"
           label="Name"
           name="name"
@@ -59,7 +59,7 @@ export const Form = () => {
           onChange={handleChange}
         />
         <TextField
-          className={s.input}
+          sx={{ marginRight: '70px' }}
           type="text"
           label="Name"
           name="number"
