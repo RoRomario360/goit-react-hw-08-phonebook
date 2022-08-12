@@ -44,49 +44,35 @@ export const Form = () => {
   };
 
   return (
-    <form onSubmit={handlerSubmit}>
-      <label className={s.form__label}>
-        Name
-        <input
+    <div className={s.form_wrapper}>
+      <form onSubmit={handlerSubmit}>
+        <TextField
           className={s.input}
           type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          value={name}
-          onChange={handleChange}
-        />
-      </label>
-
-      {/* <TextField
-          type="text"
           label="Name"
+          name="name"
           variant="outlined"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
           onChange={handleChange}
-        /> */}
-
-      <label className={s.form__label}>
-        Phone
-        <input
+        />
+        <TextField
           className={s.input}
-          type="tel"
+          type="text"
+          label="Name"
           name="number"
+          variant="outlined"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
           value={number}
           onChange={handleChange}
         />
-      </label>
-
-      <Button type="submit" variant="contained" startIcon={<AddIcCallIcon />}>
-        Add Contact
-      </Button>
-    </form>
+        <Button type="submit" variant="contained" startIcon={<AddIcCallIcon />}>
+          Add Contact
+        </Button>
+      </form>
+    </div>
   );
 };

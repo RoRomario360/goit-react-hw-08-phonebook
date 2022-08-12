@@ -5,7 +5,7 @@ const Home = () => {
   const home = homeCover;
   return (
     <div className={s.wrapper}>
-      <img src={home}></img>
+      <img src={home} alt="cover"></img>
     </div>
   );
 };
