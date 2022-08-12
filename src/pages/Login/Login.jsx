@@ -1,3 +1,4 @@
+import s from './Login.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/auth-operations';
@@ -17,7 +18,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     dispatch(logIn(values));
-    setValues('');
+    // setValues({});
   };
 
   const handleChange = event => {
@@ -26,41 +27,45 @@ const LoginForm = () => {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch', display: 'flex' },
-      }}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="email"
-        name="email"
-        type="email"
-        value={values.email}
-        onChange={handleChange}
-        label="Email"
-        variant="outlined"
-      />
-      <TextField
-        id="password"
-        name="password"
-        type="password"
-        value={values.password}
-        onChange={handleChange}
-        label="Password"
-        variant="filled"
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        endIcon={<AccountBoxOutlinedIcon />}
+    <div className={s.form_wrapper}>
+      <h2 className={s.label}>Log in</h2>
+      <Box
+        className={s.form_box}
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch', display: 'flex' },
+        }}
+        noValidate
+        autoComplete="on"
+        onSubmit={handleSubmit}
       >
-        Log in
-      </Button>
-    </Box>
+        <TextField
+          id="email"
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={handleChange}
+          label="Email"
+          variant="outlined"
+        />
+        <TextField
+          id="password"
+          name="password"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+          label="Password"
+          variant="filled"
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          endIcon={<AccountBoxOutlinedIcon />}
+        >
+          Log in
+        </Button>
+      </Box>
+    </div>
   );
 };
 export default LoginForm;

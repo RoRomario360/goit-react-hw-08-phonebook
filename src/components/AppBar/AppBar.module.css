@@ -1,0 +1,37 @@
+.header {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: baseline;
+  padding: 20px 10px;
+  background: #98d0ec;
+  -webkit-box-shadow: 10px 11px 12px -9px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 10px 11px 12px -9px rgba(0, 0, 0, 0.74);
+  box-shadow: 10px 11px 12px -9px rgba(0, 0, 0, 0.74);
+}
+
+.link_nav {
+  margin-right: 20px;
+}
+.logged_text {
+  font-size: 15px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.logged_box {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+}
+.register_box {
+  margin-left: auto;
+}
+.user_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user_img {
+  display: block;
+  margin-right: 10px;
+}
