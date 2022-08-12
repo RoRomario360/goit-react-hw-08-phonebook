@@ -2,7 +2,7 @@ import Avatar from 'react-avatar';
 
 import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsLogged, getUserName } from 'redux/auth/auth-selectors';
 import { logOut } from 'redux/auth/auth-operations';
@@ -19,13 +19,19 @@ const AppBar = () => {
 
   return (
     <header className={s.header}>
-      <div>
-        <Link className={s.link_nav} to="/">
+      <div className={s.home_wrapper}>
+        <NavLink
+          className={({ isActive }) => (isActive ? s.active_link : s.link_nav)}
+          to="/"
+        >
           Home
-        </Link>
-        <Link className={s.link_nav} to="/contacts">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? s.active_link : s.link_nav)}
+          to="/contacts"
+        >
           Contacts
-        </Link>
+        </NavLink>
       </div>
       {isLogin && (
         <div className={s.logged_box}>
@@ -50,12 +56,22 @@ const AppBar = () => {
       )}
       {!isLogin && (
         <div className={s.register_box}>
-          <Link className={s.link_nav} to="/register">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? s.active_link : s.link_nav
+            }
+            to="/register"
+          >
             Sign in
-          </Link>
-          <Link className={s.link_nav} to="/login">
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? s.active_link : s.link_nav
+            }
+            to="/login"
+          >
             Log in
-          </Link>
+          </NavLink>
         </div>
       )}
     </header>

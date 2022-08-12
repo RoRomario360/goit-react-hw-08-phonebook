@@ -32,7 +32,7 @@ const authSlice = createSlice({
       state.user.email = '';
     },
     [getCurrentUser.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
+      state.user = payload;
       state.isLogged = true;
     },
   },

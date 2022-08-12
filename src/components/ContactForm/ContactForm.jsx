@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
-
+import Button from '@mui/material/Button';
+import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import { useState } from 'react';
 import s from './ContactForm.module.css';
+import TextField from '@mui/material/TextField';
 
 export const Form = () => {
   const [name, setName] = useState('');
@@ -56,6 +58,18 @@ export const Form = () => {
           onChange={handleChange}
         />
       </label>
+
+      {/* <TextField
+          type="text"
+          label="Name"
+          variant="outlined"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          value={name}
+          onChange={handleChange}
+        /> */}
+
       <label className={s.form__label}>
         Phone
         <input
@@ -69,9 +83,10 @@ export const Form = () => {
           onChange={handleChange}
         />
       </label>
-      <button className={s.contact__btn} type="submit">
-        Add contact
-      </button>
+
+      <Button type="submit" variant="contained" startIcon={<AddIcCallIcon />}>
+        Add Contact
+      </Button>
     </form>
   );
 };

@@ -5,6 +5,8 @@ import {
 } from 'redux/contacts/contacts-operations';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import s from './ContactList.module.css';
 
 export default function ContactList() {
@@ -37,13 +39,13 @@ export default function ContactList() {
               Phone: <span className={s.contact__num}>{number}</span>
             </p>
 
-            <button
-              className={s.contact__btn}
-              type="button"
+            <Button
+              variant="outlined"
+              startIcon={<DeleteIcon />}
               onClick={() => handlerDelete(id)}
             >
               Delete
-            </button>
+            </Button>
           </li>
         );
       })}
