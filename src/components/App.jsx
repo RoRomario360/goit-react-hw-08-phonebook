@@ -13,6 +13,7 @@ import { getIsRefreshed, getToken } from 'redux/auth/auth-selectors';
 import { getCurrentUser } from 'redux/auth/auth-operations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
+import DotLoader from 'react-spinners/DotLoader';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const App = () => {
   return (
     <>
       {isRefreshed ? (
-        <h1>Loading</h1>
+        <DotLoader />
       ) : (
         <>
           <AppBar />
