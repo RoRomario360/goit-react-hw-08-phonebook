@@ -48,6 +48,7 @@ export const Form = () => {
       <form onSubmit={handlerSubmit}>
         <TextField
           sx={{ marginRight: '80px' }}
+          className={s.input}
           type="text"
           label="Name"
           name="name"
@@ -60,6 +61,7 @@ export const Form = () => {
         />
         <TextField
           sx={{ marginRight: '70px' }}
+          className={s.input}
           type="text"
           label="Name"
           name="number"

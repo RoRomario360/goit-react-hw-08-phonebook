@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import AppBar from './AppBar/AppBar';
 import Home from './Home/Home';
+import NotFound from 'pages/NotFoundPage/NotFound';
 import RegisterForm from 'pages/Register/Register';
 import LoginForm from 'pages/Login/Login';
 import { useEffect } from 'react';
@@ -50,6 +51,7 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer autoClose={1000} theme="colored" />
     </>
