@@ -9,7 +9,7 @@ import Contacts from 'pages/Contacts/Contacts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken } from 'redux/auth/auth-selectors';
+import { getIsRefreshed, getToken } from 'redux/auth/auth-selectors';
 import { getCurrentUser } from 'redux/auth/auth-operations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
@@ -17,6 +17,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(getToken);
+  const isRefreshed = useSelector(getIsRefreshed);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -24,36 +25,42 @@ export const App = () => {
 
   return (
     <>
-      <AppBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="register"
-          element={
-            <PublicRoute>
-              <RegisterForm />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <PublicRoute>
-              <LoginForm />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="contacts"
-          element={
-            <PrivateRoute>
-              <Contacts />
-            </PrivateRoute>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <ToastContainer autoClose={1000} theme="colored" />
+      {isRefreshed ? (
+        <h1>Loading</h1>
+      ) : (
+        <>
+          <AppBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <RegisterForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LoginForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <ToastContainer autoClose={1000} theme="colored" />
+        </>
+      )}
     </>
   );
 };

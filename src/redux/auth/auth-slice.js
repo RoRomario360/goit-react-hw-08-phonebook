@@ -34,6 +34,14 @@ const authSlice = createSlice({
     [getCurrentUser.fulfilled]: (state, { payload }) => {
       state.user = payload;
       state.isLogged = true;
+      state.isRefreshed = false;
+    },
+    [getCurrentUser.pending]: (state, { payload }) => {
+      state.isRefreshed = true;
+    },
+    [getCurrentUser.rejected]: (state, { payload }) => {
+      state.token = '';
+      state.isRefreshed = false;
     },
   },
 });
